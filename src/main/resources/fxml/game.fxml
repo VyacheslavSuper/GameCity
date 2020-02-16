@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Главная">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Выход" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0">
+            <children>
+                <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="5.0" prefHeight="268.0" prefWidth="263.0" spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="5.0">
+                    <children>
+                        <Label fx:id="name_left" text="Игрок 1" />
+                  <ListView fx:id="listview_left" disable="true" prefHeight="200.0" prefWidth="200.0" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+                <Button fx:id="onExit" layoutX="250.0" layoutY="148.0" mnemonicParsing="false" onAction="#pressOnExit" prefWidth="100.0" text="Выход" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="148.0">
+                    <font>
+                        <Font name="Calibri Bold" size="15.0" />
+                    </font>
+                </Button>
+                <VBox alignment="TOP_CENTER" layoutX="369.0" layoutY="5.0" prefHeight="268.0" prefWidth="227.0" spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
+                    <children>
+                        <Label fx:id="name_right" text="Игрок 2" />
+                  <ListView fx:id="listview_right" disable="true" prefHeight="200.0" prefWidth="200.0" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
