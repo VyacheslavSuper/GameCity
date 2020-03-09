@@ -24,8 +24,9 @@ public final class MenuController implements Initializable {
 
     private static Game game;
 
-    private int strategy = 1;
-    private int strategy2 = 3;
+    public static Game getGame() {
+        return game;
+    }
 
     //buttons
     @FXML
@@ -36,6 +37,21 @@ public final class MenuController implements Initializable {
     private MenuButton mbtn_quality_left;
     @FXML
     private MenuButton mbtn_quality_right;
+
+    //radio buttons
+    @FXML
+    private RadioButton left_first;
+    @FXML
+    private RadioButton left_second;
+    @FXML
+    private RadioButton left_third;
+    @FXML
+    private RadioButton right_first;
+    @FXML
+    private RadioButton right_second;
+    @FXML
+    private RadioButton right_third;
+
 
     //name players
     @FXML
@@ -75,19 +91,43 @@ public final class MenuController implements Initializable {
         dialog.setHeaderText(null);
         dialog.setContentText("Никнейм:");
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(label::setText);
+        if (result.isPresent()) {
+            String[] strings = label.getId().split("_");
+            if (strings[1].equals("left")) {
+                game.getLeftPerson().setName(result.get());
+            } else {
+                game.getRightPerson().setName(result.get());
+            }
+        }
+        validateApplication();
 
     }
 
     @FXML
     public void setStrategy(ActionEvent event) {
         RadioButton radioButton = (RadioButton) event.getSource();
+        String[] string = radioButton.getId().split("_");
+
+        if (string[0].equals("left")) {
+            updateStrategy(game.getLeftPerson(), string[1]);
+        } else {
+            updateStrategy(game.getRightPerson(), string[1]);
+        }
+        validateApplication();
 
     }
 
     @FXML
     public void setQuality(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
+        String[] string = menuItem.getId().split("_");
+
+        if (string[0].equals("left")) {
+            updatePersonQuality(game.getLeftPerson(), Integer.parseInt(string[1]));
+        } else {
+            updatePersonQuality(game.getRightPerson(), Integer.parseInt(string[1]));
+        }
+        validateApplication();
 
     }
 
@@ -95,6 +135,28 @@ public final class MenuController implements Initializable {
         validateNamePlayers();
         validateGameQuality();
         validateVisible();
+    }
+
+    private void updateStrategy(Person person, String strategy) {
+        switch (strategy) {
+            case "first": {
+                person.setStrategy(PersonStrategy.FIRST);
+                break;
+            }
+            case "second": {
+                person.setStrategy(PersonStrategy.SECOND);
+                break;
+            }
+            case "third": {
+                person.setStrategy(PersonStrategy.THIRD);
+                break;
+            }
+        }
+    }
+
+
+    private void updatePersonQuality(Person person, int quality) {
+        person.setQuality(quality);
     }
 
     private void validateNamePlayers() {
@@ -115,6 +177,38 @@ public final class MenuController implements Initializable {
     private void validateVisible() {
         updateVisible(game.getLeftPerson(), mbtn_quality_left, txt_qualityleft);
         updateVisible(game.getRightPerson(), mbtn_quality_right, txt_qualityright);
+        updateRadioButton();
+    }
+
+    private void updateRadioButton() {
+        switch (game.getLeftPerson().getStrategy()) {
+            case FIRST: {
+                left_first.setSelected(true);
+                break;
+            }
+            case SECOND: {
+                left_second.setSelected(true);
+                break;
+            }
+            case THIRD: {
+                left_third.setSelected(true);
+                break;
+            }
+        }
+        switch (game.getRightPerson().getStrategy()) {
+            case FIRST: {
+                right_first.setSelected(true);
+                break;
+            }
+            case SECOND: {
+                right_second.setSelected(true);
+                break;
+            }
+            case THIRD: {
+                right_third.setSelected(true);
+                break;
+            }
+        }
     }
 
     private void updateVisible(Person person, MenuButton button, Label label) {
@@ -128,22 +222,16 @@ public final class MenuController implements Initializable {
     }
 
     private void updateQuality(Person person, Label label) {
-        switch (person.getQuality()) {
-            case EASY: {
-                label.setText("Лёгкий");
-                label.setTextFill(Color.GREEN);
-                break;
-            }
-            case NORMAL: {
-                label.setText("Средний");
-                label.setTextFill(Color.YELLOW);
-                break;
-            }
-            case HARD: {
-                label.setText("Сложный");
-                label.setTextFill(Color.RED);
-                break;
-            }
+        int quality = person.getQuality();
+        if (quality <= 30) {
+            label.setText("Лёгкий");
+            label.setTextFill(Color.GREEN);
+        } else if (quality <= 70) {
+            label.setText("Средний");
+            label.setTextFill(Color.YELLOWGREEN);
+        } else {
+            label.setText("Сложный");
+            label.setTextFill(Color.RED);
         }
     }
 

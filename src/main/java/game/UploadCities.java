@@ -2,6 +2,7 @@ package game;
 
 
 import game.model.City;
+import game.repository.GameStorage;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -9,11 +10,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+
+import static game.constants.Constants.citiesPathName;
 
 
-public class UploadCities  {
+public class UploadCities extends Thread {
+    public UploadCities() {
+    }
 
+    @Override
+    public void run() {
+        List<City> cities = getAllCitiesFromFile(citiesPathName);
+        GameStorage.putAll(cities);
+    }
 
     private List<City> getAllCitiesFromFile(String pathname) {
         List<City> requestCities = new ArrayList<>();
@@ -22,7 +31,7 @@ public class UploadCities  {
             do {
                 city = br.readLine();
                 if (city != null && !city.trim().isEmpty()) {
-                    requestCities.add(new City(city.trim()));
+                    requestCities.add(City.createCity(city));
                 }
             } while (city != null);
         } catch (IOException e) {

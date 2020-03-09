@@ -11,6 +11,7 @@ public class GameApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
 		primaryStage.setTitle("Игра Города");
 		primaryStage.setResizable(false);
@@ -24,6 +25,8 @@ public class GameApplication extends Application {
 	}
 
 	public static void main(String[] args) {
+        UploadCities thread = new UploadCities();
+        thread.start();
 		launch(args);
 	}
 }

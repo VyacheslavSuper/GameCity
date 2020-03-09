@@ -12,7 +12,7 @@ public class City {
     private String name;
 
     public static City createCity(String stringCity) {
-        return new City(stringCity);
+        return new City(stringCity.trim().toLowerCase());
     }
 
     public String getFirstSymbol() {
@@ -39,9 +39,17 @@ public class City {
             case "ь":
             case "ъ":
             case "й":
+            case "ы":
                 return false;
             default:
                 return true;
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(name);
+        builder.setCharAt(0, Character.toUpperCase(name.charAt(0)));
+        return builder.toString();
     }
 }

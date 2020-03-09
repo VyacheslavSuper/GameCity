@@ -1,83 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.text.Font?>
 <VBox prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuController">
-   <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="Главная">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Выход" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Помощь">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <AnchorPane minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0">
-         <children>
-            <Button fx:id="btn_onStart" layoutX="250.0" layoutY="100.0" mnemonicParsing="false" onAction="#pressOnStart" prefWidth="100.0" text="Старт" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
-               <font>
-                  <Font name="Calibri Bold" size="15.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="5.0" prefHeight="268.0" prefWidth="263.0" spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="5.0">
-               <children>
-                  <Label fx:id="name_left" onMouseClicked="#pressName" text="Игрок 1" />
-                  <RadioButton fx:id="left_first" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" selected="true" text="Стратегия 1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Implementation" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="left_second" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" text="Стратегия 2" toggleGroup="$Implementation" />
-                  <RadioButton fx:id="left_third" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" text="Стратегия 3" toggleGroup="$Implementation" />
-                  <Label fx:id="txt_qualityleft" text="Лёгкий" visible="false" />
-                  <MenuButton fx:id="mbtn_quality_left" mnemonicParsing="false" text="Сложность" visible="false">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Главная">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Лёгкий" />
-                      <MenuItem mnemonicParsing="false" text="Средний" />
-                        <MenuItem mnemonicParsing="false" text="Сложный" />
+                        <MenuItem mnemonicParsing="false" text="Выход"/>
                     </items>
-                  </MenuButton>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="369.0" layoutY="5.0" prefHeight="268.0" prefWidth="227.0" spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
-               <children>
-                  <Label fx:id="name_right" onMouseClicked="#pressName" text="Игрок 2" />
-                  <RadioButton fx:id="right_first" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" selected="true" text="Стратегия 1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Implementation2" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="right_second" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" text="Стратегия 2" toggleGroup="$Implementation2" />
-                  <RadioButton fx:id="right_third" mnemonicParsing="false" onAction="#setStrategy" prefHeight="17.0" prefWidth="110.0" text="Стратегия 3" toggleGroup="$Implementation2" />
-                  <Label fx:id="txt_qualityright" text="Лёгкий" visible="false" />
-                  <MenuButton fx:id="mbtn_quality_right" mnemonicParsing="false" text="Сложность" visible="false">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setQuality" text="Лёгкий" />
-                        <MenuItem mnemonicParsing="false" onAction="#setQuality" text="Средний" />
-                        <MenuItem mnemonicParsing="false" onAction="#setQuality" text="Сложный" />
-                     </items>
-                  </MenuButton>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </children>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Об авторе"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0">
+            <children>
+                <Button fx:id="btn_onStart" layoutX="250.0" layoutY="100.0" mnemonicParsing="false"
+                        onAction="#pressOnStart" prefWidth="100.0" text="Старт" AnchorPane.leftAnchor="250.0"
+                        AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
+                    <font>
+                        <Font name="Calibri Bold" size="15.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <tooltip>
+                        <Tooltip text="Empty Tooltip"/>
+                    </tooltip>
+                </Button>
+                <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="5.0" prefHeight="268.0" prefWidth="263.0"
+                      spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="4.0"
+                      AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="5.0">
+                    <children>
+                        <Label fx:id="name_left" onMouseClicked="#pressName" text="Игрок 1">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </Label>
+                        <RadioButton fx:id="left_first" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" selected="true" text="Стратегия 1">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="Implementation"/>
+                            </toggleGroup>
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="left_second" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" text="Стратегия 2"
+                                     toggleGroup="$Implementation">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="left_third" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" text="Стратегия 3"
+                                     toggleGroup="$Implementation">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <Label fx:id="txt_qualityleft" text="Лёгкий" visible="false"/>
+                        <MenuButton fx:id="mbtn_quality_left" mnemonicParsing="false" text="Сложность" visible="false">
+                            <items>
+                                <MenuItem fx:id="left_10" mnemonicParsing="false" onAction="#setQuality" text="10"/>
+                                <MenuItem fx:id="left_20" mnemonicParsing="false" onAction="#setQuality" text="20"/>
+                                <MenuItem fx:id="left_30" mnemonicParsing="false" onAction="#setQuality" text="30"/>
+                                <MenuItem fx:id="left_40" mnemonicParsing="false" onAction="#setQuality" text="40"/>
+                                <MenuItem fx:id="left_50" mnemonicParsing="false" onAction="#setQuality" text="50"/>
+                                <MenuItem fx:id="left_60" mnemonicParsing="false" onAction="#setQuality" text="60"/>
+                                <MenuItem fx:id="left_70" mnemonicParsing="false" onAction="#setQuality" text="70"/>
+                                <MenuItem fx:id="left_80" mnemonicParsing="false" onAction="#setQuality" text="80"/>
+                                <MenuItem fx:id="left_90" mnemonicParsing="false" onAction="#setQuality" text="90"/>
+                                <MenuItem fx:id="left_100" mnemonicParsing="false" onAction="#setQuality" text="100"/>
+                            </items>
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </MenuButton>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </VBox>
+                <VBox alignment="TOP_CENTER" layoutX="369.0" layoutY="5.0" prefHeight="268.0" prefWidth="227.0"
+                      spacing="10.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="369.0"
+                      AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
+                    <children>
+                        <Label fx:id="name_right" onMouseClicked="#pressName" text="Игрок 2">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </Label>
+                        <RadioButton fx:id="right_first" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" selected="true" text="Стратегия 1">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="Implementation2"/>
+                            </toggleGroup>
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="right_second" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" text="Стратегия 2"
+                                     toggleGroup="$Implementation2">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="right_third" mnemonicParsing="false" onAction="#setStrategy"
+                                     prefHeight="17.0" prefWidth="110.0" text="Стратегия 3"
+                                     toggleGroup="$Implementation2">
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </RadioButton>
+                        <Label fx:id="txt_qualityright" text="Лёгкий" visible="false"/>
+                        <MenuButton fx:id="mbtn_quality_right" mnemonicParsing="false" text="Сложность" visible="false">
+                            <items>
+                                <MenuItem fx:id="right_10" mnemonicParsing="false" onAction="#setQuality" text="10"/>
+                                <MenuItem fx:id="right_20" mnemonicParsing="false" onAction="#setQuality" text="20"/>
+                                <MenuItem fx:id="right_30" mnemonicParsing="false" onAction="#setQuality" text="30"/>
+                                <MenuItem fx:id="right_40" mnemonicParsing="false" onAction="#setQuality" text="40"/>
+                                <MenuItem fx:id="right_50" mnemonicParsing="false" onAction="#setQuality" text="50"/>
+                                <MenuItem fx:id="right_60" mnemonicParsing="false" onAction="#setQuality" text="60"/>
+                                <MenuItem fx:id="right_70" mnemonicParsing="false" onAction="#setQuality" text="70"/>
+                                <MenuItem fx:id="right_80" mnemonicParsing="false" onAction="#setQuality" text="80"/>
+                                <MenuItem fx:id="right_90" mnemonicParsing="false" onAction="#setQuality" text="90"/>
+                                <MenuItem fx:id="right_100" mnemonicParsing="false" onAction="#setQuality" text="100"/>
+                            </items>
+                            <tooltip>
+                                <Tooltip text="Empty Tooltip"/>
+                            </tooltip>
+                        </MenuButton>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>

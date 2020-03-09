@@ -2,18 +2,20 @@ package game.repository;
 
 import game.model.City;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class GameStorage {
+public final class GameStorage {
 
-    private Map<String, List<City>> mapCities;
-    private Set<City> cities;
+    private static Map<String, List<City>> mapCities;
+    private static Set<City> cities;
 
-    public synchronized void put(City city) {
-        if(!cities.contains(city)) {
+
+    public static synchronized void put(City city) {
+        if (mapCities == null) {
+            mapCities = new HashMap<>();
+            cities = new HashSet<>();
+        }
+        if (!cities.contains(city)) {
             cities.add(city);
             if (!checkCities(city)) {
                 List<City> list = new ArrayList<>();
@@ -25,17 +27,35 @@ public class GameStorage {
         }
     }
 
-    public void putAll(List<City> list) {
-        list.forEach(this::put);
-        System.out.println(String.format("Upload %d cities", list.size()));
+    public static boolean isWordExist(City city) {
+        return cities.contains(city);
     }
 
-    public List<City> getCitiesByKey(String key) {
-        return new ArrayList<>(mapCities.get(key));
+    public static void putAll(List<City> list) {
+        if (mapCities == null) {
+            mapCities = new HashMap<>();
+            cities = new HashSet<>();
+        }
+        list.forEach(GameStorage::put);
     }
 
+    public static List<City> getCitiesByKey(String key) {
+        List<City> list = mapCities.get(key);
+        if (list == null) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(list);
+    }
 
-    private boolean checkCities(City city){
+    private static boolean checkCities(City city) {
         return mapCities.containsKey(city.getFirstSymbol());
+    }
+
+    public static List<City> getAllCities() {
+        return new ArrayList<>(cities);
+    }
+
+    public static City getRandomCity() {
+        return new ArrayList<>(cities).get((int) (Math.random() * cities.size()));
     }
 }
