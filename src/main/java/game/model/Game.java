@@ -50,7 +50,7 @@ public class Game {
         timer = new Timer(1000, e -> gameTime++);
         timer.start();
         City city = getRandomCity();
-        System.out.println(city);
+       // System.out.println(city);
         addWord(city);
     }
 
@@ -82,10 +82,10 @@ public class Game {
         if (isWordExist(city) && addWord(city)) {
             usedByLeftPerson.put(numberCity, city);
         } else {
-            System.out.println("lose " + city);
+            //  System.out.println("lose " + city);
             finished = true;
             winner = rightPerson;
-            System.out.println(winner);
+            //  System.out.println(winner);
         }
     }
 
@@ -96,10 +96,10 @@ public class Game {
         if (isWordExist(city) && addWord(city)) {
             usedByRightPerson.put(numberCity, city);
         } else {
-            System.out.println("lose " + city);
+            //     System.out.println("lose " + city);
             finished = true;
             winner = leftPerson;
-            System.out.println(winner);
+            //  System.out.println(winner);
         }
     }
 

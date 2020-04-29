@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.AboutMe;
 import game.GameApplication;
 import game.ai.AiThread;
 import game.model.City;
@@ -50,7 +51,7 @@ public final class GameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         game = getGame();
-        System.out.println("Game");
+        //System.out.println("Game");
         validateApplication();
         game.start();
         threadGame = new Thread(() -> {
@@ -87,10 +88,26 @@ public final class GameController implements Initializable {
             e.printStackTrace();
         }
 
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         Stage primaryStage = GameApplication.getStage();
         primaryStage.setScene(new Scene(root, 600, 250));
+    }
+
+    @FXML
+    public void closeGame(ActionEvent event) {
+        game.stop();
+        try {
+            threadGame.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Platform.exit();
+        System.exit(0);
+    }
+
+    @FXML
+    public void aboutMe(ActionEvent event) throws IOException {
+        AboutMe.openWindow();
     }
 
     private void validateApplication() {

@@ -4,18 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuController">
+<VBox prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="game.controller.MenuController">
     <children>
         <MenuBar>
             <menus>
                 <Menu mnemonicParsing="false" text="Главная">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Выход"/>
+                        <MenuItem mnemonicParsing="false" onAction="#closeGame" text="Выход"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Помощь">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Об авторе"/>
+                        <MenuItem mnemonicParsing="false" onAction="#aboutMe" text="Об авторе"/>
                     </items>
                 </Menu>
             </menus>
@@ -32,7 +33,7 @@
                         <Insets/>
                     </opaqueInsets>
                     <tooltip>
-                        <Tooltip text="Empty Tooltip"/>
+                        <Tooltip text="Старт игры"/>
                     </tooltip>
                 </Button>
                 <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="5.0" prefHeight="268.0" prefWidth="263.0"
@@ -41,7 +42,7 @@
                     <children>
                         <Label fx:id="name_left" onMouseClicked="#pressName" text="Игрок 1">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Нажмите, чтоб сменить имя"/>
                             </tooltip>
                         </Label>
                         <RadioButton fx:id="left_first" mnemonicParsing="false" onAction="#setStrategy"
@@ -50,21 +51,21 @@
                                 <ToggleGroup fx:id="Implementation"/>
                             </toggleGroup>
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Просто рандом"/>
                             </tooltip>
                         </RadioButton>
                         <RadioButton fx:id="left_second" mnemonicParsing="false" onAction="#setStrategy"
                                      prefHeight="17.0" prefWidth="110.0" text="Стратегия 2"
                                      toggleGroup="$Implementation">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Зачатки разума, есть ограниченная база знаний"/>
                             </tooltip>
                         </RadioButton>
                         <RadioButton fx:id="left_third" mnemonicParsing="false" onAction="#setStrategy"
                                      prefHeight="17.0" prefWidth="110.0" text="Стратегия 3"
                                      toggleGroup="$Implementation">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Зачатки разума, база знаний с выбором наилучшего слова для победы"/>
                             </tooltip>
                         </RadioButton>
                         <Label fx:id="txt_qualityleft" text="Лёгкий" visible="false"/>
@@ -82,7 +83,7 @@
                                 <MenuItem fx:id="left_100" mnemonicParsing="false" onAction="#setQuality" text="100"/>
                             </items>
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Процент знаний"/>
                             </tooltip>
                         </MenuButton>
                     </children>
@@ -96,7 +97,7 @@
                     <children>
                         <Label fx:id="name_right" onMouseClicked="#pressName" text="Игрок 2">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Нажмите, чтоб сменить имя"/>
                             </tooltip>
                         </Label>
                         <RadioButton fx:id="right_first" mnemonicParsing="false" onAction="#setStrategy"
@@ -105,21 +106,21 @@
                                 <ToggleGroup fx:id="Implementation2"/>
                             </toggleGroup>
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Просто рандом"/>
                             </tooltip>
                         </RadioButton>
                         <RadioButton fx:id="right_second" mnemonicParsing="false" onAction="#setStrategy"
                                      prefHeight="17.0" prefWidth="110.0" text="Стратегия 2"
                                      toggleGroup="$Implementation2">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Зачатки разума, есть ограниченная база знаний"/>
                             </tooltip>
                         </RadioButton>
                         <RadioButton fx:id="right_third" mnemonicParsing="false" onAction="#setStrategy"
                                      prefHeight="17.0" prefWidth="110.0" text="Стратегия 3"
                                      toggleGroup="$Implementation2">
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Зачатки разума, база знаний с выбором наилучшего слова для победы"/>
                             </tooltip>
                         </RadioButton>
                         <Label fx:id="txt_qualityright" text="Лёгкий" visible="false"/>
@@ -137,7 +138,7 @@
                                 <MenuItem fx:id="right_100" mnemonicParsing="false" onAction="#setQuality" text="100"/>
                             </items>
                             <tooltip>
-                                <Tooltip text="Empty Tooltip"/>
+                                <Tooltip text="Процент знаний"/>
                             </tooltip>
                         </MenuButton>
                     </children>

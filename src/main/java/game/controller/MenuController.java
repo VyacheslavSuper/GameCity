@@ -1,9 +1,11 @@
 package game.controller;
 
+import game.AboutMe;
 import game.GameApplication;
 import game.model.Game;
 import game.model.Person;
 import game.model.base.PersonStrategy;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,9 +71,9 @@ public final class MenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (game == null) {
             game = Game.createGame(name_left.getText(), name_right.getText());
-            System.out.println("Create game");
+            //System.out.println("Create game");
         }
-        System.out.println("Menu");
+        //System.out.println("Menu");
         validateApplication();
     }
 
@@ -80,6 +82,17 @@ public final class MenuController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/game.fxml"));
         Stage primaryStage = GameApplication.getStage();
         primaryStage.setScene(new Scene(root, 600, 250));
+    }
+
+    @FXML
+    public void closeGame(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
+    }
+
+    @FXML
+    public void aboutMe(ActionEvent event) throws IOException {
+        AboutMe.openWindow();
     }
 
 
